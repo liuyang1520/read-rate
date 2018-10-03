@@ -19,7 +19,7 @@
 
     setTimer(estimate) {
       for (let value of ['hours', 'minutes', 'seconds']) {
-        this[value].textContent = estimate[value]
+        this[value].textContent = ('0' + estimate[value]).slice(-2)
       }
     }
 
@@ -45,6 +45,7 @@
   }
 
   chrome.runtime.sendMessage({type: 'get_estimate'}, (response) => {
+    if (response == null) return;
     if (response.estimate != null) {
       let timer = new Timer({
         el: document.getElementById('timer'),
