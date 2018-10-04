@@ -44,13 +44,15 @@
     }
   }
 
-  chrome.runtime.sendMessage({type: 'get_estimate'}, (response) => {
-    if (response == null) return;
-    if (response.estimate != null) {
-      let timer = new Timer({
-        el: document.getElementById('timer'),
-        estimate: response.estimate
-      })
-    }
+  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    chrome.runtime.sendMessage({type: 'get_estimate', tabId: tabs[0].id}, (response) => {
+      if (response == null) return;
+      if (response.estimate != null) {
+        let timer = new Timer({
+          el: document.getElementById('timer'),
+          estimate: response.estimate
+        })
+      }
+    })
   })
 })();
