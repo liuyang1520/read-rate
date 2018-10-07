@@ -16,7 +16,9 @@
     let readRate = document.getElementById('settings-read-rate').value
     if (isInteger(readRate)) {
       console.log('trying to save')
-      chrome.storage.sync.set({'settings_read_rate': Math.floor(Number(readRate))})
+      chrome.storage.sync.set({'settings_read_rate': Math.floor(Number(readRate))}, () => {
+        document.getElementById('settings-save').textContent = 'Saved'
+      })
     }
   })
 })();
