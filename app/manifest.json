@@ -36,6 +36,7 @@
         "http://*/*",
         "https://*/*"
       ],
+      "exclude_matches": ["*://*.youtube.com/*"],
       "js": [
         "scripts/Readability.js",
         "scripts/contentscript.js"
