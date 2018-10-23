@@ -5,8 +5,8 @@
     constructor(options) {
       this.el = options.el
       this.initialize()
-      if (options.estimate) {
-        this.setTimer(options.estimate)
+      if (options.state) {
+        this.setTimer(options.state)
       }
       this.updateTimer()
     }
@@ -17,9 +17,10 @@
       this.seconds = this.el.querySelector('.seconds')
     }
 
-    setTimer(estimate) {
+    setTimer(state) {
+      let estimate = periodToTime(endTimeToPeriod(state.endTime), 'string')
       for (let value of ['hours', 'minutes', 'seconds']) {
-        this[value].textContent = ('0' + estimate[value]).slice(-2)
+        this[value].textContent = estimate[value]
       }
     }
 
@@ -27,17 +28,18 @@
       let hours = this.hours.textContent
       let minutes = this.minutes.textContent
       let seconds = this.seconds.textContent
-      let diff = hours * 3600 + minutes * 60 + seconds * 1
-      let endTime = new Date(new Date().getTime() + diff * 1000)
+      let diff = (hours * 3600 + minutes * 60 + seconds * 1) * 1000
+      let endTime = getEndTime(diff)
 
       let updateHelper = () => {
-        let currentDiff = Date.parse(endTime) - Date.parse(new Date())
+        let currentDiff = endTimeToPeriod(endTime)
         if (currentDiff <= 0) {
           clearInterval(updateTimerInterval);
         }
-        this.hours.textContent = ('0' + Math.floor((currentDiff / (1000 * 60 * 60)) % 24)).slice(-2)
-        this.minutes.textContent = ('0' + Math.floor((currentDiff / 1000 / 60) % 60)).slice(-2)
-        this.seconds.textContent = ('0' + Math.floor((currentDiff / 1000) % 60)).slice(-2)
+        let timeObject = periodToTime(currentDiff, 'string')
+        this.hours.textContent = timeObject.hours
+        this.minutes.textContent = timeObject.minutes
+        this.seconds.textContent = timeObject.seconds
       }
 
       let updateTimerInterval = setInterval(updateHelper, 1000);
@@ -47,10 +49,10 @@
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     chrome.runtime.sendMessage({type: 'get_estimate', tabId: tabs[0].id}, (response) => {
       if (response == null) return;
-      if (response.estimate != null) {
+      if (response.state != null) {
         let timer = new Timer({
           el: document.getElementById('timer'),
-          estimate: response.estimate
+          state: response.state
         })
       }
     })

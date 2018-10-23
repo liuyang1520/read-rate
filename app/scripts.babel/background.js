@@ -16,20 +16,20 @@
       case 'store_content':
         chrome.storage.sync.get(['settings_read_rate'], (result) => {
           if (result.settings_read_rate != null) {
-            let minutes = request.content == null ? 0 : Math.floor(request.content.length / result.settings_read_rate)
+            let milliseconds = request.content == null ? 0 : Math.floor(request.content.length / result.settings_read_rate * 60000);
+            let timeObject = periodToTime(milliseconds);
             tabInfo[sender.tab.id] = {
-              hours: Math.floor(minutes / 60),
-              minutes: Math.floor(minutes % 60),
-              seconds: 0,
-              totalMins: minutes
-            }
-            sendResponse({})
+              totalMins: timeObject.hours * 60 + timeObject.minutes,
+              totalMs: milliseconds,
+              endTime: getEndTime(milliseconds)
+            };
+            sendResponse({});
           }
         })
         break
       case 'get_estimate':
         if (tabInfo != null) {
-          sendResponse({estimate: tabInfo[request.tabId]})
+          sendResponse({state: tabInfo[request.tabId]})
         }
         break
       default:
