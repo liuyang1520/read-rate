@@ -1,4 +1,5 @@
 body {
+  width: 300px;
   text-align: center;
   background: #00ECB9;
   font-family: sans-serif;
@@ -13,7 +14,7 @@ h1 {
 }
 
 #timer {
-  width: 300px;
+  width: 80%;
   font-family: sans-serif;
   color: #fff;
   display: inline-block;
@@ -30,7 +31,7 @@ h1 {
 }
 
 #timer div > span {
-  padding: 15px;
+  padding: 5px;
   border-radius: 3px;
   background: #00816A;
   display: inline-block;
@@ -39,6 +40,10 @@ h1 {
 #timer .units {
   padding-top: 5px;
   font-size: 16px;
+}
+
+#control {
+  display: inline-block;
 }
 
 #settings {
