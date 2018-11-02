@@ -20,8 +20,7 @@
             let timeObject = periodToTime(milliseconds);
             tabInfo[sender.tab.id] = {
               totalMins: timeObject.hours * 60 + timeObject.minutes,
-              totalMs: milliseconds,
-              endTime: getEndTime(milliseconds)
+              totalMs: milliseconds
             };
             sendResponse({});
           }
