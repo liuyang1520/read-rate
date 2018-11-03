@@ -20,23 +20,25 @@
     <!-- endbuild -->
 
     <div id='timer'>
-      <div>
-        <span class='hours'>00</span>
-        <div class='units'>H</div>
+      <div id='display'>
+        <div>
+          <span class='hours'>00</span>
+          <div class='units'>H</div>
+        </div>
+        <div>
+          <span class='minutes'>00</span>
+          <div class='units'>M</div>
+        </div>
+        <div>
+          <span class='seconds'>00</span>
+          <div class='units'>S</div>
+        </div>
       </div>
-      <div>
-        <span class='minutes'>00</span>
-        <div class='units'>M</div>
+      <div id ='control'>
+        <div><i id='reset' class='icon-ccw'></i></div>
+        <div><i id='pause-resume' class='icon-play'></i></div>
+        <div><i id='done' class='icon-ok'></i></div>
       </div>
-      <div>
-        <span class='seconds'>00</span>
-        <div class='units'>S</div>
-      </div>
-    </div>
-    <div id ='control'>
-      <div><i id='reset' class='icon-ccw'></i></div>
-      <div><i id='pause-resume' class='icon-play'></i></div>
-      <div><i id='done' class='icon-ok'></i></div>
     </div>
 
     <!-- build:js scripts/popup.js -->

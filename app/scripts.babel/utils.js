@@ -26,3 +26,7 @@ function getEndTime(period, now = new Date()) {
 function endTimeToPeriod(endTime, now = new Date()) {
   return endTime - Date.parse(now)
 }
+
+function _pick(object, ...properties) {
+  return Object.assign({}, ...properties.map(property => ({[property]: object[property]})));
+}

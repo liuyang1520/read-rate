@@ -13,7 +13,7 @@ h1 {
   margin: 40px 0px 20px;
 }
 
-#timer {
+#display {
   width: 80%;
   font-family: sans-serif;
   color: #fff;
@@ -23,21 +23,21 @@ h1 {
   font-size: 30px;
 }
 
-#timer > div {
+#display > div {
   padding: 10px;
   border-radius: 3px;
   background: #00BF96;
   display: inline-block;
 }
 
-#timer > div > span {
+#display > div > span {
   padding: 5px;
   border-radius: 3px;
   background: #00816A;
   display: inline-block;
 }
 
-#timer .units {
+#display .units {
   padding-top: 5px;
   font-size: 16px;
 }
