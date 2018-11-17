@@ -75,6 +75,11 @@
       syncTime('resume', this.getRestTime())
     }
 
+    done() {
+      syncTime('Done', this.getRestTime())
+      this.setState({paused: true})
+    }
+
     getRestTime() {
       let hours = this.$hours.text()
       let minutes = this.$minutes.text()

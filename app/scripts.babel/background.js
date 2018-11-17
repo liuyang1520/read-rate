@@ -6,6 +6,10 @@
   });
 
   let tabInfo = {}
+      cache = {}
+
+  chrome.storage.sync.get(['date'], (result) => {
+  })
 
   chrome.tabs.onRemoved.addListener(function(tabId) {
     delete tabInfo[tabId]
@@ -46,6 +50,14 @@
         } else if (request.action == 'reset') {
           tabInfo[request.tabId].endTime = null
           tabInfo[request.tabId].paused = true
+        } else if (request.action == 'done') {
+          tabInfo[request.tabId].finished = true
+          // store the finished reading record
+          // {date: {time_stamp: {title: web_title, finished_in: seconds}}}
+          // not sure whether to store the URL here, it might take too many storage
+          chrome.storage.sync.set({'settings_read_rate': Math.floor(Number(readRate))}, () => {
+            document.getElementById('settings-save').textContent = 'Saved'
+          })
         }
         sendResponse({message: 'success'})
         break
