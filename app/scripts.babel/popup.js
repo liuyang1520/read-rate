@@ -76,8 +76,9 @@
     }
 
     done() {
-      syncTime('Done', this.getRestTime())
-      this.setState({paused: true})
+      clearInterval(this._updateTimerInterval)
+      syncTime('done', this.getRestTime())
+      this.setTimer(this._initState)
     }
 
     getRestTime() {
@@ -102,6 +103,10 @@
           this.resume()
           $target.addClass('icon-pause').removeClass('icon-play')
         }
+      })
+
+      this.$el.find('#done').click((event) => {
+        this.done()
       })
     }
   }

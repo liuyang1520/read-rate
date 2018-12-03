@@ -5,10 +5,13 @@
     console.log('previousVersion', details.previousVersion);
   });
 
-  let tabInfo = {}
+  let tabInfo = {},
       cache = {}
 
-  chrome.storage.sync.get(['date'], (result) => {
+  chrome.storage.sync.get(['history'], (result) => {
+    if (result.history != null) {
+      cache = result.history
+    }
   })
 
   chrome.tabs.onRemoved.addListener(function(tabId) {
@@ -22,13 +25,14 @@
           if (result.settings_read_rate != null) {
             let milliseconds = request.content == null ? 0 : Math.floor(request.content.length / result.settings_read_rate * 60000);
             let timeObject = periodToTime(milliseconds);
-            // need to store endTime as when popup closed, the time should not change
             tabInfo[sender.tab.id] = {
-              totalMins: timeObject.hours * 60 + timeObject.minutes,
-              totalMs: milliseconds,
-              restMs: milliseconds,
-              paused: true
-              //endTime: getEndTime(milliseconds)
+              title: sender.tab.title, // tab title
+              totalMins: timeObject.hours * 60 + timeObject.minutes, // estimated reading time in mins, for badge
+              totalMs: milliseconds, // estimated reading time milliseconds
+              restMs: milliseconds, // rest reading time, used for pause/resume
+              endTime: null, // estimated end time to finish, used when popup is closed
+              paused: true,
+              finished: false
             };
             sendResponse({});
           }
@@ -50,14 +54,17 @@
         } else if (request.action == 'reset') {
           tabInfo[request.tabId].endTime = null
           tabInfo[request.tabId].paused = true
+          tabInfo[request.tabId].restMs = tabInfo[request.tabId].totalMs
         } else if (request.action == 'done') {
+          tabInfo[request.tabId].endTime = null
+          tabInfo[request.tabId].paused = true
           tabInfo[request.tabId].finished = true
+          tabInfo[request.tabId].restMs = tabInfo[request.tabId].totalMs
           // store the finished reading record
           // {date: {time_stamp: {title: web_title, finished_in: seconds}}}
           // not sure whether to store the URL here, it might take too many storage
-          chrome.storage.sync.set({'settings_read_rate': Math.floor(Number(readRate))}, () => {
-            document.getElementById('settings-save').textContent = 'Saved'
-          })
+          _assign(cache, {title: tabInfo[request.tabId].title, finished_in: tabInfo[request.tabId].totalMs - request.restMs}, fomattedDate(), currentTs())
+          chrome.storage.sync.set({'history': cache}, () => {})
         }
         sendResponse({message: 'success'})
         break

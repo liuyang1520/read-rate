@@ -30,3 +30,29 @@ function endTimeToPeriod(endTime, now = new Date()) {
 function _pick(object, ...properties) {
   return Object.assign({}, ...properties.map(property => ({[property]: object[property]})));
 }
+
+function _assign(object, value, ...properties) {
+  let len = properties.length
+  for (let i = 0; i < len - 1; i++) {
+    let property = properties[i]
+    if (!(property in object)) object[property] = {}
+    object = object[property]
+  }
+  object[properties[len-1]] = value
+}
+
+function fomattedDate(date = new Date()) {
+  let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
+function currentTs() {
+  return Math.floor(Date.now() / 1000)
+}
