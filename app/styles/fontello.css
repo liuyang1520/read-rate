@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../fonts/fontello.eot?66667673');
-  src: url('../fonts/fontello.eot?66667673#iefix') format('embedded-opentype'),
-       url('../fonts/fontello.woff2?66667673') format('woff2'),
-       url('../fonts/fontello.woff?66667673') format('woff'),
-       url('../fonts/fontello.ttf?66667673') format('truetype'),
-       url('../fonts/fontello.svg?66667673#fontello') format('svg');
+  src: url('../font/fontello.eot?21252835');
+  src: url('../font/fontello.eot?21252835#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?21252835') format('woff2'),
+       url('../font/fontello.woff?21252835') format('woff'),
+       url('../font/fontello.ttf?21252835') format('truetype'),
+       url('../font/fontello.svg?21252835#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?66667673#fontello') format('svg');
+    src: url('../font/fontello.svg?21252835#fontello') format('svg');
   }
 }
 */
@@ -55,13 +55,11 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-ok:before { content: '\e800'; } /* '' */
-.icon-ok-circled:before { content: '\e801'; } /* '' */
-.icon-ok-circled2:before { content: '\e802'; } /* '' */
-.icon-ccw:before { content: '\e803'; } /* '' */
+.icon-calendar:before { content: '\e800'; } /* '' */
+.icon-ok:before { content: '\e801'; } /* '' */
+.icon-ccw:before { content: '\e802'; } /* '' */
+.icon-pause:before { content: '\e803'; } /* '' */
 .icon-play:before { content: '\e804'; } /* '' */
-.icon-pause:before { content: '\e805'; } /* '' */
-.icon-play-circled2:before { content: '\e806'; } /* '' */
 .icon-spin4:before { content: '\e834'; } /* '' */
-.icon-ccw-1:before { content: '\f025'; } /* '' */
-.icon-play-circled:before { content: '\f144'; } /* '' */
+.icon-sliders:before { content: '\f1de'; } /* '' */
+.icon-hourglass-2:before { content: '\f252'; } /* '' */

@@ -9,16 +9,22 @@
     <!-- build:css styles/main.css -->
     <link href="styles/fontello.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
+    <link href="bower_components/cal-heatmap/cal-heatmap.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
-    <h1>Read Rate</h1>
-
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
 
+    <div id='header'>
+      <div class='btn-group-row'>
+        <div class='btn'><i id='hourglass' class='icon-hourglass-2 icon-effect'></i></div>
+        <div class='btn'><i id='history' class='icon-calendar icon-effect'></i></div>
+        <div class='btn'><i id='settings' class='icon-sliders icon-effect'></i></div>
+      </div>
+    </div>
     <div id='timer'>
       <div id='display'>
         <div>
@@ -34,18 +40,28 @@
           <div class='units'>S</div>
         </div>
       </div>
-      <div id ='control'>
-        <div><i id='reset' class='icon-ccw'></i></div>
-        <div><i id='pause-resume' class='icon-play'></i></div>
-        <div><i id='done' class='icon-ok'></i></div>
+      <div id='control' class='btn-group-col'>
+        <div class='btn'><i id='reset' class='icon-ccw icon-effect'></i></div>
+        <div class='btn'><i id='pause-resume' class='icon-play icon-effect'></i></div>
+        <div class='btn'><i id='done' class='icon-ok icon-effect'></i></div>
       </div>
+    </div>
+    <div id='visualization'>
+      <div class='btn-group-col'>
+        <div class='btn'><i id='previous-selector' class='icon-ccw icon-effect'></i></div>
+        <div class='btn'><i id='next-selector' class='icon-play icon-effect'></i></div>
+      </div>
+      <div id='cal-heatmap'></div>
     </div>
 
     <!-- build:js scripts/popup.js -->
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/cal-heatmap/cal-heatmap.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/Readability.js"></script>
     <script src="scripts/popup.js"></script>
+    <script src="scripts/visualization.js"></script>
     <!-- endbuild -->
   </body>
 </html>

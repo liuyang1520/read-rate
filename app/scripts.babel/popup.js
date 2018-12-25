@@ -22,9 +22,9 @@
     setTimer(state) {
       if (!state) return
       if (state.paused == true) {
-        this.$el.find('#pause-resume').attr('class', 'icon-play')
+        this.$el.find('#pause-resume').addClass('icon-play').removeClass('icon-pause')
       } else {
-        this.$el.find('#pause-resume').attr('class', 'icon-pause')
+        this.$el.find('#pause-resume').addClass('icon-pause').removeClass('icon-play')
       }
       let estimate = {hours: '00', minutes: '00', seconds: '00'}
       if (state.endTime != null) {
@@ -133,4 +133,14 @@
       })
     })
   }
+
+  $('i#history').click((event) => {
+    $('div#visualization').show()
+    $('div#timer').hide()
+  })
+
+  $('i#hourglass').click((event) => {
+    $('div#timer').show()
+    $('div#visualization').hide()
+  })
 })();
