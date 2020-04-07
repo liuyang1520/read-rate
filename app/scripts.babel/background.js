@@ -61,7 +61,7 @@
           tabInfo[request.tabId].finished = true
           tabInfo[request.tabId].restMs = tabInfo[request.tabId].totalMs
           // store the finished reading record
-          // {date: {time_stamp: {title: web_title, finished_in: seconds}}}
+          // {date: {time_stamp: {title: web_title, finished_in: milliseconds}}}
           // not sure whether to store the URL here, it might take too many storage
           _assign(cache, {title: tabInfo[request.tabId].title, finished_in: tabInfo[request.tabId].totalMs - request.restMs}, fomattedDate(), currentTs())
           chrome.storage.sync.set({'history': cache}, () => {})

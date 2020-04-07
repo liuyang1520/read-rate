@@ -136,6 +136,7 @@
 
   $('i#history').click((event) => {
     $('div#visualization').show()
+    window.renderCal(data)
     $('div#timer').hide()
   })
 
