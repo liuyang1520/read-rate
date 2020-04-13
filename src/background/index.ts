@@ -20,7 +20,7 @@
             let timeObject = periodToTime(milliseconds);
             // need to store endTime as when popup closed, the time should not change
             tabInfo[sender.tab.id] = {
-              totalMins: timeObject.hours * 60 + timeObject.minutes,
+              totalMins: +timeObject.hours * 60 + +timeObject.minutes,
               totalMs: milliseconds,
               restMs: milliseconds,
               paused: true

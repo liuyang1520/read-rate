@@ -10,9 +10,8 @@
   "default_locale": "en",
   "background": {
     "scripts": [
-      "scripts/chromereload.js",
-      "scripts/utils.js",
-      "scripts/background.js"
+      "utils.js",
+      "background.js"
     ]
   },
   "permissions": [
@@ -28,7 +27,7 @@
     "*://*.google.com/"
   ],
   "options_ui": {
-    "page": "options.html",
+    "page": "options/index.html",
     "chrome_style": true
   },
   "content_scripts": [
@@ -39,8 +38,7 @@
       ],
       "exclude_matches": ["*://*.youtube.com/*"],
       "js": [
-        "scripts/Readability.js",
-        "scripts/contentscript.js"
+        "contentscript.js"
       ],
       "run_at": "document_end",
       "all_frames": false
@@ -52,7 +50,7 @@
       "38": "images/icon-38.png"
     },
     "default_title": "read rate",
-    "default_popup": "popup.html"
+    "default_popup": "popup/index.html"
   },
   "web_accessible_resources": [
     "images/icon-48.png"

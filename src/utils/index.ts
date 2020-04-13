@@ -1,16 +1,14 @@
-function periodToTime(period, returnType = 'int') {
+function periodToTime(period: number) {
   // period is the time in milliseconds
   if (period <= 0) {
     period = 0
   }
-  let hours = Math.floor((period / (1000 * 60 * 60)) % 24)
-  let minutes = Math.floor((period / 1000 / 60) % 60)
-  let seconds = Math.floor((period / 1000) % 60)
-  if (returnType == 'string') {
-    hours = ('0' + hours).slice(-2)
-    minutes = ('0' + minutes).slice(-2)
-    seconds = ('0' + seconds).slice(-2)
-  }
+  let hours: string = Math.floor((period / (1000 * 60 * 60)) % 24).toString();
+  let minutes: string = Math.floor((period / 1000 / 60) % 60).toString();
+  let seconds: string = Math.floor((period / 1000) % 60).toString();
+  hours = ('0' + hours).slice(-2)
+  minutes = ('0' + minutes).slice(-2)
+  seconds = ('0' + seconds).slice(-2)
   return {
     hours: hours,
     minutes: minutes,
@@ -24,7 +22,7 @@ function getEndTime(period, now = new Date()) {
 }
 
 function endTimeToPeriod(endTime, now = new Date()) {
-  return endTime - Date.parse(now)
+  return endTime - Date.parse(now.toString())
 }
 
 function _pick(object, ...properties) {

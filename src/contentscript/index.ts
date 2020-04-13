@@ -1,4 +1,4 @@
-'use strict';
+import { Readability } from "readability";
 
 (function() {
   let documentClone = document.cloneNode(true)
