@@ -1,9 +1,7 @@
-import { Readability } from "readability";
+import Readability from "readability";
 
-(function() {
-  let documentClone = document.cloneNode(true)
-  let article = new Readability(documentClone).parse()
+let documentClone = document.cloneNode(true)
+let article = new Readability(documentClone).parse()
 
-  chrome.runtime.sendMessage({type: 'store_content', content: article}, (response) => {
-  })
-})();
+chrome.runtime.sendMessage({type: 'store_content', content: article}, (response) => {
+})

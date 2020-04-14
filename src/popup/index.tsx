@@ -1,5 +1,6 @@
 import $ from "jquery";
 import "./index.scss";
+import { periodToTime, endTimeToPeriod, getEndTime } from "../utils";
 
 class Timer {
   $el;
