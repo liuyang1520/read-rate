@@ -19,17 +19,19 @@ const plugins = [
     filename: "options/index.html",
     chunks: ["options"]
   }),
-  new CopyWebpackPlugin([
-    path.resolve(__dirname, "src/manifest.json"),
-    {
-      from: './src/_locales',
-      to: '_locales'
-    },
-    {
-      from: path.resolve(__dirname, "./src/images"),
-      to: "images"
-    }
-  ]),
+  new CopyWebpackPlugin({
+    patterns: [
+      path.resolve(__dirname, "src/manifest.json"),
+      {
+        from: './src/_locales',
+        to: '_locales'
+      },
+      {
+        from: path.resolve(__dirname, "./src/images"),
+        to: "images"
+      }
+    ]
+  }),
   new webpack.DefinePlugin({
     "process.env": {
       "ENV": JSON.stringify(ENV)
